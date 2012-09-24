@@ -68,7 +68,7 @@ module Cieloloja
     def xml_builder(group_name, target=:after, &block)
       xml = Builder::XmlMarkup.new
       xml.instruct! :xml, :version=>"1.0", :encoding=>"ISO-8859-1"
-      xml.tag!(group_name, :id => "#{Time.now.to_i}", :versao => "1.1.0") do
+      xml.tag!(group_name, :id => "#{Time.now.to_i}", :versao => "1.2.0") do
         block.call(xml) if target == :before
         xml.tag!("dados-ec") do
           xml.numero Cieloloja.numero_afiliacao

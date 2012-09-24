@@ -52,7 +52,7 @@ describe Cieloloja::Transaction do
     end
     it "returns a successfull message" do
       FakeWeb.register_uri(:any, "https://qasecommerce.cielo.com.br/servicos/ecommwsec.do",
-        :body => "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<transacao id=\"1308170973\" versao=\"1.1.0\" xmlns=\"http://ecommerce.cbmp.com.br\">\n  <tid>1001734898056B3C1001</tid>\n  <dados-pedido>\n    <numero>1</numero>\n    <valor>100</valor>\n    <moeda>986</moeda>\n    <data-hora>2011-06-15T18:45:16.705-02:00</data-hora>\n    <idioma>PT</idioma>\n  </dados-pedido>\n  <forma-pagamento>\n    <bandeira>visa</bandeira>\n    <produto>1</produto>\n    <parcelas>1</parcelas>\n  </forma-pagamento>\n  <status>0</status>\n</transacao>\n\n", :content_type => "application/xml")
+        :body => "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<transacao id=\"1308170973\" versao=\"1.2.0\" xmlns=\"http://ecommerce.cbmp.com.br\">\n  <tid>1001734898056B3C1001</tid>\n  <dados-pedido>\n    <numero>1</numero>\n    <valor>100</valor>\n    <moeda>986</moeda>\n    <data-hora>2011-06-15T18:45:16.705-02:00</data-hora>\n    <idioma>PT</idioma>\n  </dados-pedido>\n  <forma-pagamento>\n    <bandeira>visa</bandeira>\n    <produto>1</produto>\n    <parcelas>1</parcelas>\n  </forma-pagamento>\n  <status>0</status>\n</transacao>\n\n", :content_type => "application/xml")
       
       response = @transaction.verify!("1001734898056B3C1001")
 
@@ -67,7 +67,7 @@ describe Cieloloja::Transaction do
     end
     it "returns a successfull message" do
       FakeWeb.register_uri(:any, "https://qasecommerce.cielo.com.br/servicos/ecommwsec.do",
-        :body => "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<transacao id=\"1308170973\" versao=\"1.1.0\" xmlns=\"http://ecommerce.cbmp.com.br\">\n  <tid>1001734898056B3C1001</tid>\n  <dados-pedido>\n    <numero>1</numero>\n    <valor>100</valor>\n    <moeda>986</moeda>\n    <data-hora>2011-06-15T18:45:16.705-02:00</data-hora>\n    <idioma>PT</idioma>\n  </dados-pedido>\n  <forma-pagamento>\n    <bandeira>visa</bandeira>\n    <produto>1</produto>\n    <parcelas>1</parcelas>\n  </forma-pagamento>\n  <status>0</status>\n</transacao>\n\n", :content_type => "application/xml")
+        :body => "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<transacao id=\"1308170973\" versao=\"1.2.0\" xmlns=\"http://ecommerce.cbmp.com.br\">\n  <tid>1001734898056B3C1001</tid>\n  <dados-pedido>\n    <numero>1</numero>\n    <valor>100</valor>\n    <moeda>986</moeda>\n    <data-hora>2011-06-15T18:45:16.705-02:00</data-hora>\n    <idioma>PT</idioma>\n  </dados-pedido>\n  <forma-pagamento>\n    <bandeira>visa</bandeira>\n    <produto>1</produto>\n    <parcelas>1</parcelas>\n  </forma-pagamento>\n  <status>0</status>\n</transacao>\n\n", :content_type => "application/xml")
       
       response = @transaction.catch!("1001734898056B3C1001")
 

@@ -6,7 +6,7 @@ module Cieloloja
     end
     def create!(parameters={})
       analysis_parameters(parameters)
-      message = xml_builder("requisicao-transacao") do |xml|
+      message = xml_builder(parameters[:"cielo_key"], parameters[:afiliation] ,"requisicao-transacao") do |xml|
 
         if parameters[:"numero-cartao"] != nil
           xml.tag!("dados-portador") do
@@ -65,14 +65,14 @@ module Cieloloja
       parameters
     end
     
-    def xml_builder(group_name, target=:after, &block)
+    def xml_builder(key, afiliation ,group_name, target=:after, &block)
       xml = Builder::XmlMarkup.new
       xml.instruct! :xml, :version=>"1.0", :encoding=>"ISO-8859-1"
       xml.tag!(group_name, :id => "#{Time.now.to_i}", :versao => "1.2.0") do
         block.call(xml) if target == :before
         xml.tag!("dados-ec") do
-          xml.numero Cieloloja.numero_afiliacao
-          xml.chave Cieloloja.chave_acesso
+          xml.numero afiliation
+          xml.chave key
         end
         block.call(xml) if target == :after
       end

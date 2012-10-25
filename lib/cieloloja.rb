@@ -21,7 +21,7 @@ module Cieloloja
     ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
   end
   
-  @@environment = :test
+  @@environment = :production
   mattr_accessor :environment
   @@numero_afiliacao = "1006993069" 
   mattr_accessor :numero_afiliacao

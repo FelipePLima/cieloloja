@@ -10,8 +10,9 @@ require "builder"
 module Cieloloja
 
   class Production
-    BASE_URL = "https://ecommerce.cielo.com.br"
-    WS_PATH = "/servicos/ecommwsec.do"
+    BASE_URL = ""
+    WS_PATH = ""
+    ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
   end
 
   class Test

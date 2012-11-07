@@ -21,11 +21,11 @@ module Cieloloja
     ssl_verify_mode = OpenSSL::SSL::VERIFY_NONE
   end
   
-  @@environment = :production
+  @@environment = :test
   mattr_accessor :environment
-  @@numero_afiliacao = "1031068705" 
+  @@numero_afiliacao = "1006993069" 
   mattr_accessor :numero_afiliacao
-  @@chave_acesso = "f5eeb7abba7551bddda0de06ec7403f79b9954142bb50d90aa5301e22cffe8e6"
+  @@chave_acesso = "25fbb99741c739dd84d7b06ec78c9bac718838630f30b112d033ce2e621b34f3"
   mattr_accessor :chave_acesso
   @@return_path = "http://localhost:3000"
   mattr_accessor :return_path

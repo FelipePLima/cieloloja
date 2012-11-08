@@ -34,6 +34,7 @@ module Cieloloja
     end
     
     def verify!(parameters={})
+      analysis_parameters(parameters)
       Rails.logger.info "CIELO LOJA TID #{parameters[:cieloloja_tid]}"
       return nil unless parameters[:cieloloja_tid]
       message = xml_builder(parameters[:"cielo_key"], parameters[:afiliation] ,"requisicao-consulta", :before) do |xml|

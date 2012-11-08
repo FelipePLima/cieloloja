@@ -3,7 +3,6 @@ module Cieloloja
   class Transaction
     def initialize
       @connection = Cieloloja::Connection.new
-      Rails.logger.info "CIELO TRANSACTION"
     end
     def create!(parameters={})
       analysis_parameters(parameters)
@@ -33,12 +32,10 @@ module Cieloloja
       make_request! message
     end
     
-    def verify!(parameters={})
-      analysis_parameters(parameters)
-      Rails.logger.info "CIELO LOJA TID #{parameters[:cieloloja_tid]}"
-      return nil unless parameters[:cieloloja_tid]
-      message = xml_builder(parameters[:"cielo_key"], parameters[:afiliation] ,"requisicao-consulta", :before) do |xml|
-        xml.tid "#{parameters[:cieloloja_tid]}"
+    def verify!(cieloloja_tid)
+      return nil unless cieloloja_tid
+      message = xml_builder("requisicao-consulta", :before) do |xml|
+        xml.tid "#{cieloloja_tid}"
       end
       
       make_request! message
@@ -69,7 +66,6 @@ module Cieloloja
     end
     
     def xml_builder(key, afiliation ,group_name, target=:after, &block)
-      Rails.logger.info "AFILIATION #{afiliation}"
       xml = Builder::XmlMarkup.new
       xml.instruct! :xml, :version=>"1.0", :encoding=>"ISO-8859-1"
       xml.tag!(group_name, :id => "#{Time.now.to_i}", :versao => "1.2.0") do

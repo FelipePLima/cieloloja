@@ -3,6 +3,7 @@ module Cieloloja
   class Transaction
     def initialize
       @connection = Cieloloja::Connection.new
+      Rails.logger.info "CIELO TRANSACTION"
     end
     def create!(parameters={})
       analysis_parameters(parameters)

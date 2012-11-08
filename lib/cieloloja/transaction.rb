@@ -32,9 +32,9 @@ module Cieloloja
       make_request! message
     end
     
-    def verify!(parameters={})
+    def verify!(cieloloja_tid)
       return nil unless cieloloja_tid
-      message = xml_builder(parameters[:"cielo_key"], parameters[:afiliation] ,"requisicao-consulta", :before) do |xml|
+      message = xml_builder("requisicao-consulta", :before) do |xml|
         xml.tid "#{cieloloja_tid}"
       end
       
@@ -43,7 +43,7 @@ module Cieloloja
     
     def catch!(cieloloja_tid)
       return nil unless cieloloja_tid
-      message = xml_builder(parameters[:"cielo_key"], parameters[:afiliation] ,"requisicao-captura", :before) do |xml|
+      message = xml_builder("requisicao-captura", :before) do |xml|
         xml.tid "#{cieloloja_tid}"
       end
       make_request! message
@@ -71,8 +71,8 @@ module Cieloloja
       xml.tag!(group_name, :id => "#{Time.now.to_i}", :versao => "1.2.0") do
         block.call(xml) if target == :before
         xml.tag!("dados-ec") do
-          xml.numero afiliation
-          xml.chave key
+          xml.numero '1006993069'
+          xml.chave key '25fbb99741c739dd84d7b06ec78c9bac718838630f30b112d033ce2e621b34f3' 
         end
         block.call(xml) if target == :after
       end

@@ -34,7 +34,7 @@ module Cieloloja
     
     def verify!(cieloloja_tid)
       return nil unless cieloloja_tid
-      message = xml_builder("25fbb99741c739dd84d7b06ec78c9bac718838630f30b112d033ce2e621b34f3", "requisicao-captura", "requisicao-consulta", :before) do |xml|
+      message = xml_builder("requisicao-consulta", :before) do |xml|
         xml.tid "#{cieloloja_tid}"
       end
       

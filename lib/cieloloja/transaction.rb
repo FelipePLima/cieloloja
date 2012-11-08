@@ -33,6 +33,7 @@ module Cieloloja
     end
     
     def verify!(parameters={})
+      Rails.logger.info "CIELO LOJA TID #{parameters[:cieloloja_tid]}"
       return nil unless parameters[:cieloloja_tid]
       message = xml_builder(parameters[:"cielo_key"], parameters[:afiliation] ,"requisicao-consulta", :before) do |xml|
         xml.tid "#{parameters[:cieloloja_tid]}"
@@ -66,6 +67,7 @@ module Cieloloja
     end
     
     def xml_builder(key, afiliation ,group_name, target=:after, &block)
+      Rails.logger.info "AFILIATION #{afiliation}"
       xml = Builder::XmlMarkup.new
       xml.instruct! :xml, :version=>"1.0", :encoding=>"ISO-8859-1"
       xml.tag!(group_name, :id => "#{Time.now.to_i}", :versao => "1.2.0") do

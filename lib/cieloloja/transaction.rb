@@ -33,9 +33,9 @@ module Cieloloja
     end
     
     def verify!(parameters={})
-      return nil unless cieloloja_tid
-      message = xml_builder("requisicao-consulta", :before) do |xml|
-        xml.tid "#{cieloloja_tid}"
+      return nil unless parameters[:cieloloja_tid]
+      message = xml_builder(parameters[:"cielo_key"], parameters[:afiliation] ,"requisicao-consulta", :before) do |xml|
+        xml.tid "#{parameters[:cieloloja_tid]}"
       end
       
       make_request! message
